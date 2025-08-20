@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrustGuard AI – Restoring Digital Trust in the Age of AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      animation: float 20s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      z-index: 2;
+      position: relative;
+    }
+    
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      animation: slideUp 1s ease-out;
+    }
+    
+    .hero .tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+      animation: slideUp 1s ease-out 0.2s both;
+    }
+    
+    .hero .tagline:last-of-type {
+      margin-bottom: 3rem;
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: slideUp 1s ease-out 0.4s both;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    /* Section Styles */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section h2 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Problem Section */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .problem-item {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+      border-radius: 20px;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    .problem-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+    }
+    
+    .problem-item .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .problem-item h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4338ca;
+      margin-bottom: 1rem;
+    }
+    
+    /* Solution Cards */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .solution-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1px solid rgba(102, 126, 234, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .solution-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+    
+    .solution-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+    }
+    
+    .solution-card .icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      color: #667eea;
+    }
+    
+    .solution-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 1rem;
+    }
+    
+    .solution-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    /* Demo Section */
+    .demo-section {
+      background: linear-gradient(135deg, #f7fafc, #edf2f7);
+      padding: 5rem 2rem;
+    }
+    
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .demo-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .demo-tab {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .demo-tab:hover, .demo-tab.active {
+      border-color: #667eea;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+    }
+    
+    .demo-tab .icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .demo-result {
+      background: white;
+      border-radius: 15px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #666;
+    }
+    
+    /* Trust Score Section */
+    .trust-section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    
+    .trust-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .gauge-container {
+      margin: 3rem 0;
+    }
+    
+    .gauge {
+      width: 300px;
+      height: 150px;
+      margin: 0 auto 2rem auto;
+      position: relative;
+    }
+    
+    .gauge svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 5px 15px rgba(102, 126, 234, 0.3));
+    }
+    
+    .gauge-label {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4338ca;
+    }
+    
+    .trust-legend {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      background: rgba(102, 126, 234, 0.1);
+    }
+    
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    
+    /* How it Works Section */
+    .flow-section {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 5rem 2rem;
+    }
+    
+    .flow-steps {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    
+    .flow-step {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+      max-width: 150px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .flow-arrow {
+      font-size: 1.5rem;
+      opacity: 0.7;
+    }
+    
+    /* Comparison Section */
+    .comparison-table {
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin-top: 3rem;
+    }
+    
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    
+    .comparison-column h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .comparison-item {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      border-left: 4px solid;
+    }
+    
+    .existing .comparison-item {
+      border-left-color: #fbbf24;
+      background: rgba(251, 191, 36, 0.1);
+    }
+    
+    .trustguard .comparison-item {
+      border-left-color: #667eea;
+      background: rgba(102, 126, 234, 0.1);
+    }
+    
+    /* Team Section */
+    .team-section {
+      background: #f8fafc;
+      padding: 5rem 2rem;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .team-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0 auto 1rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    /* Footer */
+    .footer {
+      background: #1a202c;
+      color: white;
+      padding: 3rem 2rem 2rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-links a {
+      color: #a0aec0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .section { padding: 3rem 1rem; }
+      .hero { padding: 2rem; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+    
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>TrustGuard AI</h1>
+      <p class="tagline">Restoring Digital Trust in the Age of AI</p>
+      <p class="tagline">Protecting users against deepfakes, identity abuse, AI hallucinations, and biased decisions.</p>
+      <a href="#demo" class="cta-button">
+        👉 Try Demo
+      </a>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="section">
+    <h2>The Problem</h2>
+    <div class="problem-grid">
+      <div class="problem-item fade-in">
+        <span class="icon">🎭</span>
+        <h3>Deepfakes Spreading</h3>
+        <p>Synthetic media is causing widespread misinformation and trust erosion</p>
+      </div>
+      <div class="problem-item fade-in">
+        <span class="icon">🔐</span>
+        <h3>Credential Stuffing</h3>
+        <p>Automated attacks are breaking into accounts using stolen credentials</p>
+      </div>
+      <div class="problem-item fade-in">
+        <span class="icon">🤖</span>
+        <h3>AI Hallucinations</h3>
+        <p>Large Language Models generate convincing but unreliable answers</p>
+      </div>
+      <div class="problem-item fade-in">
+        <span class="icon">⚖️</span>
+        <h3>Biased Decisions</h3>
+        <p>AI systems make unfair decisions affecting real people's lives</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section class="section">
+    <h2>Our Solution – TrustGuard AI</h2>
+    <div class="solution-grid">
+      <div class="solution-card fade-in">
+        <span class="icon">📺</span>
+        <h3>Media Trust</h3>
+        <p>Advanced deepfake detection using multi-modal analysis to identify synthetic content and manipulated media</p>
+      </div>
+      <div class="solution-card fade-in">
+        <span class="icon">🛡️</span>
+        <h3>Identity Trust</h3>
+        <p>Real-time credential protection and anomaly detection to prevent account takeovers and identity theft</p>
+      </div>
+      <div class="solution-card fade-in">
+        <span class="icon">💡</span>
+        <h3>Information Trust</h3>
+        <p>AI hallucination detection and fact-checking to ensure reliable information from language models</p>
+      </div>
+      <div class="solution-card fade-in">
+        <span class="icon">⚖️</span>
+        <h3>Decision Trust</h3>
+        <p>Bias detection and fairness auditing to ensure AI decisions meet ethical standards</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo Section -->
+  <section class="demo-section" id="demo">
+    <div class="demo-container">
+      <h2>Interactive Demo</h2>
+      <div class="demo-tabs">
+        <div class="demo-tab" onclick="showDemo(0)">
+          <span class="icon">📸</span>
+          <h3>Upload Image/Video</h3>
+          <p>Test deepfake detection</p>
+        </div>
+        <div class="demo-tab" onclick="showDemo(1)">
+          <span class="icon">🔐</span>
+          <h3>Login Simulation</h3>
+          <p>Check credential security</p>
+        </div>
+        <div class="demo-tab" onclick="showDemo(2)">
+          <span class="icon">🤖</span>
+          <h3>Chatbot Text Check</h3>
+          <p>Detect AI hallucinations</p>
+        </div>
+        <div class="demo-tab" onclick="showDemo(3)">
+          <span class="icon">⚖️</span>
+          <h3>AI Decision Audit</h3>
+          <p>Check fairness & bias</p>
+        </div>
+      </div>
+      <div class="demo-result" id="demoResult">
+        Select a demo above to see TrustGuard AI in action
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Score Section -->
+  <section class="section trust-section">
+    <div class="trust-container">
+      <h2>Trust Score Dashboard</h2>
+      <p>Our system generates a real-time Trust Score that explains risk confidence</p>
+      
+      <div class="gauge-container">
+        <div class="gauge">
+          <svg viewBox="0 0 300 150">
+            <defs>
+              <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#ef4444"/>
+                <stop offset="50%" style="stop-color:#fbbf24"/>
+                <stop offset="100%" style="stop-color:#22c55e"/>
+              </linearGradient>
+            </defs>
+            <!-- Background arc -->
+            <path d="M30,130 A100,100 0 0,1 270,130" fill="none" stroke="#e5e7eb" stroke-width="20"/>
+            <!-- Score arc -->
+            <path id="scoreArc" d="M30,130 A100,100 0 0,1 270,130" fill="none" stroke="url(#gaugeGradient)" stroke-width="20" stroke-linecap="round"/>
+          </svg>
+          <div class="gauge-label" id="scoreLabel">Trust Score: 74/100</div>
+        </div>
+        
+        <div class="trust-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background: #22c55e;"></div>
+            <span>Safe (80-100)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: #fbbf24;"></div>
+            <span>Warning (50-79)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: #ef4444;"></div>
+            <span>High Risk (0-49)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="flow-section">
+    <div class="section">
+      <h2 style="color: white;">How It Works</h2>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📝</div>
+          <div>User Inputs</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚙️</div>
+          <div>Preprocessing</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+          <div>Risk Detection</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌐</div>
+          <div>API Gateway</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+          <div>Trust Score</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📈</div>
+          <div>Dashboard</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="section">
+    <h2>Why TrustGuard AI is Unique</h2>
+    <div class="comparison-table">
+      <div class="comparison-grid">
+        <div class="comparison-column existing">
+          <h3 style="color: #f59e0b;">Existing Solutions</h3>
+          <div class="comparison-item">
+            <strong>Deepfake Detection Only</strong><br>
+            Limited to video/image analysis
+          </div>
+          <div class="comparison-item">
+            <strong>Login Security Only</strong><br>
+            Focus on authentication alone
+          </div>
+          <div class="comparison-item">
+            <strong>Separate Bias Checkers</strong><br>
+            Isolated fairness tools
+          </div>
+          <div class="comparison-item">
+            <strong>No Unified Dashboard</strong><br>
+            Fragmented risk assessment
+          </div>
+        </div>
+        <div class="comparison-column trustguard">
+          <h3 style="color: #667eea;">TrustGuard AI</h3>
+          <div class="comparison-item">
+            <strong>Multi-Modal Detection</strong><br>
+            Covers all 4 trust pillars
+          </div>
+          <div class="comparison-item">
+            <strong>Integrated Protection</strong><br>
+            Holistic security approach
+          </div>
+          <div class="comparison-item">
+            <strong>Real-time Analysis</strong><br>
+            Instant risk assessment
+          </div>
+          <div class="comparison-item">
+            <strong>Unified Trust Score</strong><br>
+            Single API for all risks
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section team-section">
+    <h2>Built in 36 Hours 🚀</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">AI</div>
+        <h3>AI Developer</h3>
+        <p>Machine Learning & Detection Algorithms</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">FE</div>
+        <h3>Frontend Developer</h3>
+        <p>UI/UX Design & Interactive Dashboard</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">BE</div>
+        <h3>Backend Developer</h3>
+        <p>API Gateway & System Architecture</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">PM</div>
+        <h3>Product Manager</h3>
+        <p>Strategy & Business Development</p>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem; color: #666;">
+      <strong>Built during [Hackathon Name] 2024</strong>
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#" onclick="alert('Demo repository - not available yet')">GitHub Repo</a>
+      <a href="#" onclick="alert('Contact: team@trustguard.ai')">Contact</a>
+      <a href="#" onclick="alert('LinkedIn profiles coming soon')">LinkedIn</a>
+    </div>
+    <p>&copy; 2024 TrustGuard AI – Hackathon Project</p>
+  </footer>
+
+  <script>
+    // Demo functionality
+    const demoResults = [
+      {
+        icon: '⚠️',
+        title: 'DEEPFAKE DETECTED',
+        details: 'Facial inconsistencies found<br/>Manipulation confidence: 87%<br/>🔍 Recommendation: Verify source',
+        score: 23
+      },
+      {
+        icon: '🚨',
+        title: 'SUSPICIOUS LOGIN',
+        details: 'Anomalous behavior detected<br/>Risk score: 92/100<br/>🛡️ Additional verification required',
+        score: 18
+      },
+      {
+        icon: '🤖',
+        title: 'AI HALLUCINATION RISK',
+        details: 'Potential misinformation detected<br/>Confidence: 78%<br/>⚡ Fact-check recommended',
+        score: 34
+      },
+      {
+        icon: '✅',
+        title: 'FAIRNESS VERIFIED',
+        details: 'Bias analysis complete<br/>Fairness score: 94/100<br/>⚖️ Ethical standards met',
+        score: 94
+      }
+    ];
+
+    function showDemo(index) {
+      // Update active tab
+      document.querySelectorAll('.demo-tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.demo-tab')[index].classList.add('active');
+      
+      // Show result
+      const result = demoResults[index];
+      const resultDiv = document.getElementById('demoResult');
+      
+      resultDiv.innerHTML = `
+        <div style="font-size: 3rem; margin-bottom: 1rem;">${result.icon}</div>
+        <div style="font-size: 1.3rem; font-weight: 700; color: #2d3748; margin-bottom: 1rem;">${result.title}</div>
+        <div style="line-height: 1.6; color: #666;">${result.details}</div>
+      `;
+      
+      // Update trust score
+      setTimeout(() => updateTrustScore(result.score), 500);
+    }
+
+    // Trust Score Gauge Animation
+    function updateTrustScore(score) {
+      const percent = Math.max(0, Math.min(score, 100)) / 100;
+      const scoreArc = document.getElementById('scoreArc');
+      const scoreLabel = document.getElementById('scoreLabel');
+      
+      // Calculate arc path
+      const centerX = 150;
+      const centerY = 130;
+      const radius = 100;
+      const startAngle = Math.PI; // Start at left (180 degrees)
+      const endAngle = Math.PI + (Math.PI * percent); // End based on score
+      
+      const x1 = centerX + radius * Math.cos(startAngle);
+      const y1 = centerY + radius * Math.sin(startAngle);
+      const x2 = centerX + radius * Math.cos(endAngle);
+      const y2 = centerY + radius * Math.sin(endAngle);
+      
+      const largeArcFlag = percent > 0.5 ? 1 : 0;
+      const path = `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`;
+      
+      // Animate the arc
+      scoreArc.style.transition = 'all 1.2s ease-out';
+      scoreArc.setAttribute('d', path);
+      
+      // Animate the score counter
+      let currentScore = parseInt(scoreLabel.textContent.match(/\d+/)[0]);
+      const increment = (score - currentScore) / 30;
+      let steps = 0;
+      
+      const counter = setInterval(() => {
+        currentScore += increment;
+        steps++;
+        scoreLabel.textContent = `Trust Score: ${Math.round(currentScore)}/100`;
+        
+        if (steps >= 30) {
+          clearInterval(counter);
+          scoreLabel.textContent = `Trust Score: ${score}/100`;
+        }
+      }, 40);
+    }
+
+    // Initialize trust score
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => updateTrustScore(74), 1000);
+      
+      // Add scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all fade-in elements
+      document.querySelectorAll('.problem-item, .solution-card').forEach(el => {
+        observer.observe(el);
+      });
+    });
+
+    // Smooth scrolling for CTA button
+    document.querySelector('.cta-button').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelector('#demo').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  </script>
+</body>
+</html>
