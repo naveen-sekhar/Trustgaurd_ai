@@ -266,6 +266,7 @@
     .trust-section {
       padding: 5rem 2rem;
       text-align: center;
+      background: linear-gradient(135deg, #f8fafc, #ffffff);
     }
     
     .trust-container {
@@ -274,14 +275,21 @@
     }
     
     .gauge-container {
-      margin: 3rem 0;
+      margin: 3rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 400px;
     }
     
     .gauge {
-      width: 300px;
-      height: 150px;
-      margin: 0 auto 2rem auto;
+      width: 320px;
+      height: 160px;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
     }
     
     .gauge svg {
@@ -292,12 +300,20 @@
     
     .gauge-label {
       position: absolute;
-      bottom: 20px;
-      left: 0;
-      right: 0;
-      font-size: 1.5rem;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.4rem;
       font-weight: 700;
       color: #4338ca;
+      text-align: center;
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 2px solid rgba(102, 126, 234, 0.2);
+    }
     }
     
     .trust-legend {
@@ -468,6 +484,17 @@
       .comparison-grid { grid-template-columns: 1fr; }
       .flow-steps { flex-direction: column; }
       .flow-arrow { transform: rotate(90deg); }
+      
+      .gauge {
+        width: 280px;
+        height: 140px;
+      }
+      
+      .gauge-label {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+        bottom: 10px;
+      }
     }
     
     /* Animations */
@@ -597,7 +624,7 @@
       
       <div class="gauge-container">
         <div class="gauge">
-          <svg viewBox="0 0 300 150">
+          <svg viewBox="0 0 300 160">
             <defs>
               <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" style="stop-color:#ef4444"/>
@@ -606,9 +633,9 @@
               </linearGradient>
             </defs>
             <!-- Background arc -->
-            <path d="M30,130 A100,100 0 0,1 270,130" fill="none" stroke="#e5e7eb" stroke-width="20"/>
+            <path d="M50,140 A100,100 0 0,1 250,140" fill="none" stroke="#e5e7eb" stroke-width="16"/>
             <!-- Score arc -->
-            <path id="scoreArc" d="M30,130 A100,100 0 0,1 270,130" fill="none" stroke="url(#gaugeGradient)" stroke-width="20" stroke-linecap="round"/>
+            <path id="scoreArc" d="M50,140 A100,100 0 0,1 250,140" fill="none" stroke="url(#gaugeGradient)" stroke-width="16" stroke-linecap="round"/>
           </svg>
           <div class="gauge-label" id="scoreLabel">Trust Score: 74/100</div>
         </div>
@@ -810,9 +837,9 @@
       const scoreArc = document.getElementById('scoreArc');
       const scoreLabel = document.getElementById('scoreLabel');
       
-      // Calculate arc path
-      const centerX = 150;
-      const centerY = 130;
+      // Calculate arc path - Updated to match new SVG coordinates
+      const centerX = 150; // Center of viewBox (300/2)
+      const centerY = 140; // Y position of arc center
       const radius = 100;
       const startAngle = Math.PI; // Start at left (180 degrees)
       const endAngle = Math.PI + (Math.PI * percent); // End based on score
